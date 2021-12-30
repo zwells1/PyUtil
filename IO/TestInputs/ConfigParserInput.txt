@@ -1,0 +1,7 @@
+[DEFAULT]
+RootDirToSearch = .
+
+[Test]
+RootDirToSearch = TestFolder
+SearchFor = abc, xyz, 123
+OutputFilename = Out.txt
