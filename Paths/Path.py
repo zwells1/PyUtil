@@ -6,6 +6,12 @@ import sys
 def getAbsolutePathUpNLevels(absolutePathTo, numberOfLevelsUp = None):
     #will not handle if too many levels up requested.
 
+    print("asdfasdfasdfasdf")
+    print("asdfasdfasdfasdf")
+    print(absolutePathTo)
+    print("asdfasdfasdfasdf")
+    print("asdfasdfasdfasdf")
+
     #lots of path issues in windows need absolute paths over relative.
     if not os.path.exists(absolutePathTo):
         print("Path to file doesn't exist")
@@ -42,10 +48,23 @@ def getAbsolutePathUpNLevels(absolutePathTo, numberOfLevelsUp = None):
     reducedPath = selector.join([str(elem) for i, elem in enumerate(reducedPath)])
 
     listToReturn = None
-    if os.name is "posix":
+    if os.name == "posix":
         listToReturn = [reducedPath, '/']
     else: #windows (not considering Mac at this point)
         listToReturn = [reducedPath + '\\']
 
     return ''.join([str(elem) for i,elem in enumerate(listToReturn)])
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+def getAbsolutePathTolerantToFrozenExe():
+    if getattr(sys, 'frozen', False):
+        # If the application is run as a bundle, the PyInstaller bootloader
+        # extends the sys module by a flag frozen=True and sets the app
+        # path into variable _MEIPASS'.
+        return sys._MEIPASS
+    else:
+        return os.path.dirname(os.path.abspath(__file__))
+
+
 
