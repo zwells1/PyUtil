@@ -6,12 +6,6 @@ import sys
 def getAbsolutePathUpNLevels(absolutePathTo, numberOfLevelsUp = None):
     #will not handle if too many levels up requested.
 
-    print("asdfasdfasdfasdf")
-    print("asdfasdfasdfasdf")
-    print(absolutePathTo)
-    print("asdfasdfasdfasdf")
-    print("asdfasdfasdfasdf")
-
     #lots of path issues in windows need absolute paths over relative.
     if not os.path.exists(absolutePathTo):
         print("Path to file doesn't exist")
