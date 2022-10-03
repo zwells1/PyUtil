@@ -57,14 +57,21 @@ def getAbsolutePathUpNLevels(absolutePathTo, numberOfLevelsUp = None):
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-def getAbsolutePathTolerantToFrozenExe():
+def isScriptFrozen():
     if getattr(sys, 'frozen', False):
         # If the application is run as a bundle, the PyInstaller bootloader
         # extends the sys module by a flag frozen=True and sets the app
         # path into variable _MEIPASS'.
-        return sys._MEIPASS
+        return True
+    else:
+        return False
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+def getAbsolutePathTolerantToFrozenExe():
+    if isScriptFrozen():
+        return os.path.dirname(sys.executable)
     else:
         return os.path.dirname(os.path.abspath(__file__))
-
 
 
